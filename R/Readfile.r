@@ -63,4 +63,3 @@ data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE) {
       write.table(readdata, filename, sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
     }
   }
-data_proc(wmean = FALSE)
