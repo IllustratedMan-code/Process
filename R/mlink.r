@@ -1,11 +1,11 @@
-setwd("C:/Users/dalew/OneDrive/Documents/BioResearch/DataProcessing")
+
 #' links the metadata to the experiment data (CAUTION: VERY SLOW)
 mlink <- function (metadata, processed = TRUE, bound = TRUE) {
   # imports metadata
   metatable <- read.csv(metadata)
   filenames <- unique(metatable[1])
 
-  
+
   # loops for every unique file in the metadata
   for (i in filenames) {
 
