@@ -33,5 +33,3 @@ mlink <- function (metadata, processed = TRUE, bound = TRUE) {
   }
 
 }
-a <- mlink("metadata_lonestartick.csv")
-a
