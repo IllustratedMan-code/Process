@@ -15,6 +15,7 @@ value_counts <- function(column) {
 #' @Param wmean performs william's mean on data Default: TRUE
 #' @Param startle Removes startle responce Default: TRUE
 #' @Param fulldays Removes incomplete days Default: TRUE
+#' @export
 
 data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE) {
 
