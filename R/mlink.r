@@ -8,9 +8,9 @@ mlink <- function(metafile, proc = TRUE){
   metadata <- read.csv(metafile, header=TRUE)
   filenames <- unique(metadata[1])
   for (i in filenames){
-    #if (proc == TRUE){
-    #    i <- paste("proc", i, sep = "_")
-    #}
+    if (proc == TRUE){
+        i <- paste("proc", i, sep = "_")
+    }
     lines <- readLines(meta)
 
     combine <- list()
