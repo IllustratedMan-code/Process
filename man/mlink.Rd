@@ -2,10 +2,10 @@
 % Please edit documentation in R/mlink.r
 \name{mlink}
 \alias{mlink}
-\title{links the metadata to the experiment data (CAUTION: VERY SLOW)}
+\title{links the data to the metadata}
 \usage{
-mlink(metadata, processed = TRUE, bound = TRUE)
+mlink(metafile, proc = TRUE)
 }
 \description{
-links the metadata to the experiment data (CAUTION: VERY SLOW)
+links the data to the metadata
 }

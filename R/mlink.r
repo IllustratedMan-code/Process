@@ -1,11 +1,16 @@
-setwd("C:/Users/dalew/OneDrive/Documents/BioResearch/DataProcessing")
 
 
+#' links the data to the metadata
+#' @export
 mlink <- function(metafile, proc = TRUE){
+
   meta <- file(metafile)
   metadata <- read.csv(metafile, header=TRUE)
   filenames <- unique(metadata[1])
   for (i in filenames){
+    if (proc == TRUE){
+        i <- paste("proc", i, sep = "_")
+    }
     lines <- readLines(meta)
 
     combine <- list()
@@ -42,7 +47,3 @@ mlink <- function(metafile, proc = TRUE){
 
 
 }
-
-
-a <- mlink("metadata_lonestartick.csv")
-a
