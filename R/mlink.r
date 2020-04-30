@@ -9,12 +9,12 @@ mlink <- function(metafile, proc = TRUE){
   filenames <- unique(metadata[1])
   for (i in filenames){
     if (proc == TRUE){
-        i <- paste("proc", i, sep = "_")
+        file <- paste("proc", i, sep = "_")
     }
     lines <- readLines(meta)
 
     combine <- list()
-    curfile <- read.table(toString(i), header = FALSE, sep = "\t")
+    curfile <- read.table(toString(file), header = FALSE, sep = "\t")
     numbrows <- nrow(curfile)
     it <- 0
     datalist <- list()
@@ -41,6 +41,7 @@ mlink <- function(metafile, proc = TRUE){
       }
       finaldata <-do.call("rbind", datalist)
       colnames(finaldata) <- c(colnames(metadata), "data")
+
       return(finaldata)
 
   }
