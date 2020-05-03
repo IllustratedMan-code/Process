@@ -7,11 +7,13 @@ mlink <- function(metafile, proc = TRUE){
   meta <- file(metafile)
   metadata <- read.csv(metafile, header=TRUE)
   filenames <- unique(metadata[1])
+  lines <- readLines(meta)
+  close(meta)
   for (i in filenames){
     if (proc == TRUE){
         file <- paste("proc", i, sep = "_")
     }
-    lines <- readLines(meta)
+
 
     combine <- list()
     curfile <- read.table(toString(file), header = FALSE, sep = "\t")
@@ -41,7 +43,7 @@ mlink <- function(metafile, proc = TRUE){
       }
       finaldata <-do.call("rbind", datalist)
       colnames(finaldata) <- c(colnames(metadata), "data")
-      closeAllConnections()
+
       return(finaldata)
 
   }
