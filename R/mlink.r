@@ -41,7 +41,7 @@ mlink <- function(metafile, proc = TRUE){
       }
       finaldata <-do.call("rbind", datalist)
       colnames(finaldata) <- c(colnames(metadata), "data")
-      close(meta)
+      closeAllConnections()
       return(finaldata)
 
   }
