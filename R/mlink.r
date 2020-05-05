@@ -33,7 +33,7 @@ mlink <- function(metafile, proc = TRUE){
 
           m <- matrix(unlist(combine), nrow=numbrows, byrow = TRUE)
 
-          df <- data.frame(m, curfile[metadata[a-1, 4] + 10])
+          df <- data.frame(m, curfile[2], curfile[3], curfile[metadata[a-1, 4] + 10])
           colnames(df)[ncol(df)] <- "V11"
           datalist[[a]] <- df
 
@@ -42,7 +42,7 @@ mlink <- function(metafile, proc = TRUE){
 
       }
       finaldata <-do.call("rbind", datalist)
-      colnames(finaldata) <- c(colnames(metadata), "data")
+      colnames(finaldata) <- c(colnames(metadata), "date", "time", "data")
 
       return(finaldata)
 
