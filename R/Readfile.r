@@ -11,6 +11,9 @@ value_counts <- function(column) {
   return(data.frame("name" = values, "number" = valuelist))
 }
 
+
+
+convert_time("00:00:36")
 #' Manipulates the data in various ways
 #' @Param wmean performs william's mean on data Default: TRUE
 #' @Param startle Removes startle responce Default: TRUE

@@ -1,4 +1,17 @@
-
+#' converts time to seconds
+#' @export
+convert_time <- function(time) {
+  tenhours <- strtoi(substr(time, 1, 1))
+  hours <- strtoi(substr(time, 2, 2))
+  hours <- strtoi(tenhours * 10 + hours)
+  tenminutes <- strtoi(substr(time, 4, 4))
+  minutes <- strtoi(substr(time, 5, 5))
+  minutes <- tenminutes * 10 + minutes
+  tenseconds <- strtoi(substr(time, 7, 7))
+  seconds <- strtoi(substr(time, 8, 8))
+  seconds <- tenseconds * 10 + seconds
+  return(hours * 60 * 60 + minutes * 60 + seconds)
+}
 
 #' links the data to the metadata
 #' @export
@@ -43,7 +56,7 @@ mlink <- function(metafile, proc = TRUE){
       }
       finaldata <-do.call("rbind", datalist)
       colnames(finaldata) <- c(colnames(metadata), "date", "time", "data")
-
+      finaldata['time'] <- sapply(finaldata['time'],  convert_time)
       return(finaldata)
 
   }
