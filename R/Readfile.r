@@ -37,6 +37,9 @@ data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, path=FALSE) {
   # loops for every file not already processed
   for (i in files) {
     # imports text file as dataframe
+    if (path != FALSE){
+      i <- paste(path, i)
+    }
     readdata <- read.table(i, header = FALSE, sep = "\t")
 
     # Gets rid of incomplete days
@@ -69,8 +72,9 @@ data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, path=FALSE) {
       }
       if (file != FALSE){
         filename <- paste(path,"/", strdeterm, "_", i)
-      }
+      }else{
       filename <- paste(strdeterm, i, sep = "_")
+      }
       write.table(readdata, filename, sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
     }
   }
