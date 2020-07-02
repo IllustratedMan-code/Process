@@ -24,7 +24,7 @@ data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, path=FALSE) {
 
   # Imports all text files from the current directory and
   # excludes those already processed
-  if (file != FALSE){
+  if (path != FALSE){
     all_files <- list.files(path=path, pattern = ".*.txt")
   } else{
   all_files <- list.files(pattern = ".*.txt")
