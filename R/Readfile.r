@@ -71,6 +71,3 @@ data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, file=FALSE) {
       write.table(readdata, filename, sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
     }
   }
-setwd("C:/Users/dalew/Dropbox/BiologyResearchdavid/Drosophila")
-data_proc(fulldays=FALSE, file="data/Round 1")
-list.files(path="data/Round 1", pattern = ".*.txt")
