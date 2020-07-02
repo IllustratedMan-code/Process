@@ -20,14 +20,15 @@ value_counts <- function(column) {
 #' @Param fulldays Removes incomplete days Default: TRUE
 #' @export
 
-data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, file=NULL) {
+data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, file=FALSE) {
 
   # Imports all text files from the current directory and
   # excludes those already processed
-  if (file != NULL){
-    all_files <- list.files(path=file)
+  if (file != FALSE){
+    all_files <- list.files(path=file, pattern = ".*.txt")
   } else{
-  all_files <- list.files(pattern = ".*.txt")}
+  all_files <- list.files(pattern = ".*.txt")
+  }
   strdeterm <- "proc"
   filecondition <- grepl(strdeterm, all_files)
   files <- subset (data.frame(all_files, filecondition), filecondition == FALSE)
@@ -70,4 +71,6 @@ data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, file=NULL) {
       write.table(readdata, filename, sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
     }
   }
-data_proc(file="data")
+setwd("C:/Users/dalew/Dropbox/BiologyResearchdavid/Drosophila")
+data_proc(fulldays=FALSE, file="data/Round 1")
+list.files(path="data/Round 1", pattern = ".*.txt")
