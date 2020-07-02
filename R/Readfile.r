@@ -27,8 +27,7 @@ data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, file=NULL) {
   if (file != NULL){
     all_files <- list.files(path=file)
   } else{
-  all_files <- list.files(pattern = ".*.txt")
-}
+  all_files <- list.files(pattern = ".*.txt")}
   strdeterm <- "proc"
   filecondition <- grepl(strdeterm, all_files)
   files <- subset (data.frame(all_files, filecondition), filecondition == FALSE)
@@ -71,3 +70,4 @@ data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, file=NULL) {
       write.table(readdata, filename, sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
     }
   }
+data_proc(file="data")
