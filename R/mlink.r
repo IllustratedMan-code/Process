@@ -15,7 +15,7 @@ convert_time <- function(time) {
 
 #' links the data to the metadata
 #' @export
-mlink <- function(metafile, proc = TRUE){
+mlink <- function(metafile, proc = TRUE, filedirectory = FALSE){
 
   meta <- file(metafile)
   metadata <- read.csv(metafile, header=TRUE)
@@ -26,7 +26,9 @@ mlink <- function(metafile, proc = TRUE){
     if (proc == TRUE){
         file <- paste("proc", i, sep = "_")
     }
-
+    if (filedirectory != FALSE) {
+      file <- paste(filedirectory, "/",  file, sep="")
+    }
 
     combine <- list()
     curfile <- read.table(toString(file), header = FALSE, sep = "\t")
