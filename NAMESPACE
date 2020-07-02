@@ -3,3 +3,8 @@
 export(convert_time)
 export(data_proc)
 export(mlink)
+importFrom(data.table,converts)
+importFrom(data.table,rbindlist)
+importFrom(data.table,seconds)
+importFrom(data.table,time)
+importFrom(data.table,to)

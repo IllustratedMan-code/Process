@@ -4,7 +4,7 @@
 \alias{data_proc}
 \title{Manipulates the data in various ways}
 \usage{
-data_proc(wmean = TRUE, startle = TRUE, fulldays = TRUE)
+data_proc(wmean = TRUE, startle = TRUE, fulldays = TRUE, path = FALSE)
 }
 \description{
 Manipulates the data in various ways

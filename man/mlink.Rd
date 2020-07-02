@@ -4,7 +4,7 @@
 \alias{mlink}
 \title{links the data to the metadata}
 \usage{
-mlink(metafile, proc = TRUE)
+mlink(metafile, proc = TRUE, filedirectory = FALSE)
 }
 \description{
 links the data to the metadata
