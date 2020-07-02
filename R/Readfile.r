@@ -20,12 +20,12 @@ value_counts <- function(column) {
 #' @Param fulldays Removes incomplete days Default: TRUE
 #' @export
 
-data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, file=FALSE) {
+data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, path=FALSE) {
 
   # Imports all text files from the current directory and
   # excludes those already processed
   if (file != FALSE){
-    all_files <- list.files(path=file, pattern = ".*.txt", full.names = TRUE)
+    all_files <- list.files(path=path, pattern = ".*.txt")
   } else{
   all_files <- list.files(pattern = ".*.txt")
   }
@@ -66,6 +66,9 @@ data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, file=FALSE) {
       fmean <- function(x) log(x+1)
       wmdata <- data.frame(readdata[1:10], fmean(readdata[11:42]))
       readdata <- wmdata
+      }
+      if (file != FALSE){
+        filename <- paste(path,"/", strdeterm, "_", i)
       }
       filename <- paste(strdeterm, i, sep = "_")
       write.table(readdata, filename, sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
