@@ -1,3 +1,6 @@
+# required packages
+#' @importFrom data.table rbindlist
+
 #' converts time to seconds
 #' @export
 convert_time <- function(time) {
@@ -20,9 +23,12 @@ mlink <- function(metafile, proc = TRUE, filedirectory = FALSE){
   meta <- file(metafile)
   metadata <- read.csv(metafile, header=TRUE)
   filenames <- unique(metadata[1])
+
   lines <- readLines(meta)
   close(meta)
-  for (i in filenames){
+  dflist <- list()
+  for (d in seq(nrow(filenames))){
+    i <- filenames[d, ]
     if (proc == TRUE){
         file <- paste("proc", i, sep = "_")
     }
@@ -30,6 +36,8 @@ mlink <- function(metafile, proc = TRUE, filedirectory = FALSE){
       file <- paste(filedirectory, "/",  file, sep="")
     }
 
+
+    #return(file)
     combine <- list()
     curfile <- read.table(toString(file), header = FALSE, sep = "\t")
     numbrows <- nrow(curfile)
@@ -59,9 +67,20 @@ mlink <- function(metafile, proc = TRUE, filedirectory = FALSE){
       finaldata <-do.call("rbind", datalist)
       colnames(finaldata) <- c(colnames(metadata), "date", "time", "data")
       finaldata['time'] <- sapply(finaldata['time'],  convert_time)
-      return(finaldata)
+      dflist[[d]] <- finaldata
+
 
   }
+  # if (length(dflist) != 1){
+
+
+  # fdata <- dflist[1]
+  # for (c in seq(2, length(dflist))) {
+    # fdata <- rbind(fdata, c)
+  # }
+  # }
+  return(data.table::rbindlist(dflist))
+
 
 
 }
