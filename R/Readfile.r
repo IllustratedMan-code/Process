@@ -74,12 +74,10 @@ data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, path=FALSE) {
       }
       if (path != FALSE){
         filename <- paste(path,"/", strdeterm, "_", a, sep="")
-        
+
       }else{
       filename <- paste(strdeterm, a, sep = "_")
       }
       write.table(readdata, filename, sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
     }
   }
-setwd("C:/Users/dalew/Dropbox/BiologyResearchdavid/Drosophila")
-data_proc(fulldays=FALSE, path="data/Round 1")
