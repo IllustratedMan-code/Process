@@ -38,7 +38,7 @@ data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, path=FALSE) {
   for (i in files) {
     # imports text file as dataframe
     if (path != FALSE){
-      i <- paste(path, i)
+      i <- paste(path, "/", i, sep = "")
     }
     readdata <- read.table(i, header = FALSE, sep = "\t")
 
@@ -71,7 +71,7 @@ data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, path=FALSE) {
       readdata <- wmdata
       }
       if (file != FALSE){
-        filename <- paste(path,"/", strdeterm, "_", i)
+        filename <- paste(path,"/", strdeterm, "_", i, sep="")
       }else{
       filename <- paste(strdeterm, i, sep = "_")
       }
