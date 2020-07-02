@@ -70,7 +70,7 @@ data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, path=FALSE) {
       wmdata <- data.frame(readdata[1:10], fmean(readdata[11:42]))
       readdata <- wmdata
       }
-      if (file != FALSE){
+      if (path != FALSE){
         filename <- paste(path,"/", strdeterm, "_", i, sep="")
       }else{
       filename <- paste(strdeterm, i, sep = "_")
