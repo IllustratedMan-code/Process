@@ -37,8 +37,10 @@ data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, path=FALSE) {
   # loops for every file not already processed
   for (i in files) {
     # imports text file as dataframe
+    a <- i
     if (path != FALSE){
       i <- paste(path, "/", i, sep = "")
+
     }
     readdata <- read.table(i, header = FALSE, sep = "\t")
 
@@ -71,10 +73,13 @@ data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, path=FALSE) {
       readdata <- wmdata
       }
       if (path != FALSE){
-        filename <- paste(path,"/", strdeterm, "_", i, sep="")
+        filename <- paste(path,"/", strdeterm, "_", a, sep="")
+        
       }else{
-      filename <- paste(strdeterm, i, sep = "_")
+      filename <- paste(strdeterm, a, sep = "_")
       }
       write.table(readdata, filename, sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
     }
   }
+setwd("C:/Users/dalew/Dropbox/BiologyResearchdavid/Drosophila")
+data_proc(fulldays=FALSE, path="data/Round 1")
