@@ -20,11 +20,15 @@ value_counts <- function(column) {
 #' @Param fulldays Removes incomplete days Default: TRUE
 #' @export
 
-data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE) {
+data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, file=NULL) {
 
   # Imports all text files from the current directory and
   # excludes those already processed
+  if (file != NULL){
+    all_files <- list.files(path=file)
+  } else{
   all_files <- list.files(pattern = ".*.txt")
+}
   strdeterm <- "proc"
   filecondition <- grepl(strdeterm, all_files)
   files <- subset (data.frame(all_files, filecondition), filecondition == FALSE)
