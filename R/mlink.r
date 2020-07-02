@@ -1,5 +1,4 @@
-# required packages
-#' @importFrom data.table rbindlist
+
 
 #' converts time to seconds
 #' @export
