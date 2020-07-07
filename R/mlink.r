@@ -84,8 +84,8 @@ mlink <- function(metafile, proc = TRUE, filedirectory = FALSE){
   un <- unique(activity$daynumber)
   sequence <- seq(length(un)/2)
   for (i in sequence){
-  activity[activity$daynumber == un[i]]$daynumber <- i
-  activity[activity$daynumber == un[i+12]]$daynumber <- i
+  activity[activity$daynumber == un[i],]$daynumber <- i
+  activity[activity$daynumber == un[i+12],]$daynumber <- i
   }
   activity$daynumber <-as.numeric(activity$daynumber)
   activity$time <- (activity$daynumber-1) * 60 * 60 * 24 + activity$time
