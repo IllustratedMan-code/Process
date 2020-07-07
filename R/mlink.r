@@ -88,7 +88,7 @@ mlink <- function(metafile, proc = TRUE, filedirectory = FALSE){
   activity[activity$daynumber == un[i+12],]$daynumber <- i
   }
   activity$daynumber <-as.numeric(activity$daynumber)
-  activity$time <- (activity$daynumber-1) * 60 * 60 * 24 + activity$time
+  activity$totaltime <- (activity$daynumber-1) * 60 * 60 * 24 + activity$time
   return(activity)
 
 }
