@@ -55,7 +55,8 @@ mlink <- function(metafile, proc = TRUE, filedirectory = FALSE){
 
           m <- matrix(unlist(combine), nrow=numbrows, byrow = TRUE)
 
-          df <- data.frame(m, curfile[2], curfile[3], curfile[metadata[a-1, 4] + 10])
+          df <- data.frame(m, curfile[2], curfile[3], curfile[metadata[a-1, "region_id"] + 10])
+
           colnames(df)[ncol(df)] <- "V11"
           datalist[[a]] <- df
 
@@ -63,7 +64,9 @@ mlink <- function(metafile, proc = TRUE, filedirectory = FALSE){
 
 
       }
+
       finaldata <-do.call("rbind", datalist)
+      
       colnames(finaldata) <- c(colnames(metadata), "date", "time", "data")
       finaldata['time'] <- sapply(finaldata['time'],  convert_time)
       dflist[[d]] <- finaldata
@@ -92,3 +95,8 @@ mlink <- function(metafile, proc = TRUE, filedirectory = FALSE){
   return(activity)
 
 }
+setwd("C:/Users/dalew/Dropbox/BiologyResearchdavid/Ticks")
+
+
+activity <- mlink("metadata/metadatatick.csv", filedirectory="data/June 2020 Exp/WeekTwo")
+head(activity)
