@@ -66,7 +66,7 @@ mlink <- function(metafile, proc = TRUE, filedirectory = FALSE){
       }
 
       finaldata <-do.call("rbind", datalist)
-      
+
       colnames(finaldata) <- c(colnames(metadata), "date", "time", "data")
       finaldata['time'] <- sapply(finaldata['time'],  convert_time)
       dflist[[d]] <- finaldata
@@ -95,8 +95,3 @@ mlink <- function(metafile, proc = TRUE, filedirectory = FALSE){
   return(activity)
 
 }
-setwd("C:/Users/dalew/Dropbox/BiologyResearchdavid/Ticks")
-
-
-activity <- mlink("metadata/metadatatick.csv", filedirectory="data/June 2020 Exp/WeekTwo")
-head(activity)
