@@ -82,10 +82,10 @@ mlink <- function(metafile, proc = TRUE, filedirectory = FALSE){
   activity$region_id <- factor(activity$region_id, levels=unique(activity$region_id))
   activity$daynumber <- activity$date
   un <- unique(activity$daynumber)
-  sequence <- seq(length(un)/2)
+  sequence <- seq(length(un) #/2 for drosophila
   for (i in sequence){
   activity[activity$daynumber == un[i],]$daynumber <- i
-  activity[activity$daynumber == un[i+12],]$daynumber <- i
+  # activity[activity$daynumber == un[i+12],]$daynumber <- i
   }
   activity$daynumber <-as.numeric(activity$daynumber)
   activity$totaltime <- (activity$daynumber-1) * 60 * 60 * 24 + activity$time
