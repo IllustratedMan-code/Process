@@ -47,8 +47,12 @@ timerange <- function(itime, ftime, by=60) {
   return(tlist)
 }
 
+#' creates a list of times that can be used to trim data
+#' @param listoftimes start and stop times in the format list(start, stop, start, stop)
+#' @param by the sampling rate of the data in seconds
+#' @export
 timegenerator <- function(listoftimes, by=60) {
-  totaltimes = list()
+  totaltimes <- list()
   for(i in seq(1, length(listoftimes), 2)){
     totaltimes <- c(totaltimes, timerange(listoftimes[i], listoftimes[i+1], by))
   }
