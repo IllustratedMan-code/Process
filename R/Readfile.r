@@ -62,7 +62,7 @@ timegenerator <- function(listoftimes, by=60) {
 #' @Param fulldays Removes incomplete days Default: TRUE
 #' @export
 
-data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, path=FALSE) {
+data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, path=FALSE, by=60) {
 
   # Imports all text files from the current directory and
   # excludes those already processed
@@ -101,7 +101,7 @@ data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, path=FALSE) {
     if (startle == TRUE) {
       # creates time interval, may eventually rewrite to
       # allow user input.
-      times <- timegenerator(list("00:00:00", "01:00:00", "23:00:00", "24:00:00"))
+      times <- timegenerator(list("00:00:00", "01:00:00", "23:00:00", "24:00:00"), by = by)
       tdata <- readdata
       for (k in times) {
         tdata <- subset(tdata, V3 != k)
