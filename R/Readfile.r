@@ -10,8 +10,50 @@ value_counts <- function(column) {
   }
   return(data.frame("name" = values, "number" = valuelist))
 }
+converttoseconds <- function(time) {
+    sum <- strtoi(substr(time, 1, 1)) * 60 * 60 * 10 +
+                strtoi(substr(time, 2, 2)) * 60 * 60 +
+                strtoi(substr(time, 4, 4)) * 60 * 10 +
+                strtoi(substr(time, 5, 5)) * 60 +
+                strtoi(substr(time, 7, 7)) * 10 +
+                strtoi(substr(time, 8, 8))
+    return(sum)
+}
+converttotime <- function(seconds) {
+    time <- "00:00:00"
+    substr(time, 1, 1) <- toString(as.integer(seconds / (60 * 60 * 10)))
+    seconds <- seconds - as.integer(seconds / (60 * 60 * 10)) * 60 * 60 * 10
+    substr(time, 2, 2) <- toString(as.integer(seconds / (60 * 60)))
+    seconds <- seconds - as.integer(seconds / (60 * 60)) * 60 * 60
+    substr(time, 4, 4) <- toString(as.integer(seconds / (60 * 10)))
+    seconds <- seconds - as.integer(seconds / (60 * 10)) * 60 * 10
+    substr(time, 5, 5) <- toString(as.integer(seconds / 60))
+    seconds <- seconds - as.integer(seconds / 60) * 60
+    substr(time, 7, 7) <- toString(as.integer(seconds / 10))
+    seconds <- seconds - as.integer(seconds / 10) * 10
+    substr(time, 8, 8) <- toString(as.integer(seconds))
+    return(time)
+}
 
+timerange <- function(itime, ftime, by=60) {
+  iseconds <- converttoseconds(itime)
+  fseconds <- converttoseconds(ftime)
+  t <- iseconds
+  tlist <- list()
+  while (t <= fseconds) {
+    tlist <- c(tlist, converttotime(t))
+    t <- t + by
+  }
+  return(tlist)
+}
 
+timegenerator <- function(listoftimes, by=60) {
+  totaltimes = list()
+  for(i in seq(1, length(listoftimes), 2)){
+    totaltimes <- c(totaltimes, timerange(listoftimes[i], listoftimes[i+1], by))
+  }
+  return(totaltimes)
+}
 
 
 #' Manipulates the data in various ways
@@ -59,7 +101,7 @@ data_proc <- function(wmean=TRUE, startle=TRUE, fulldays=TRUE, path=FALSE) {
     if (startle == TRUE) {
       # creates time interval, may eventually rewrite to
       # allow user input.
-      times <- paste(append(append(paste("18:0", 00:9, sep = ""), "18:10"), append(paste("06:0", 0:9, sep = ""), "06:10")), "00", sep = ":")
+      times <- timegenerator(list("00:00:00", "01:00:00", "23:00:00", "24:00:00"))
       tdata <- readdata
       for (k in times) {
         tdata <- subset(tdata, V3 != k)
